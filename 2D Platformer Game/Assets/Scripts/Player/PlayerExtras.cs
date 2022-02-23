@@ -4,6 +4,7 @@ using UnityEngine;
 
 public struct FrameInput {
     public float X;
+    public bool Fire;
     public bool JumpDown;
     public bool JumpUp;
 }

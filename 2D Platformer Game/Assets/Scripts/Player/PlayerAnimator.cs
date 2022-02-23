@@ -29,10 +29,10 @@ public class PlayerAnimator : MonoBehaviour
         // Speed up idle while running
         _anim.SetFloat("Speed", Mathf.Abs(_player.Input.X));
 
-        if (_player.JumpingThisFrame) {
-            _anim.SetTrigger(JumpKey);
-            _anim.ResetTrigger(GroundedKey);
-        }
+        // if (_player.JumpingThisFrame) {
+        //     _anim.SetTrigger(JumpKey);
+        //     _anim.ResetTrigger(GroundedKey);
+        // }
     }
 
     private static readonly int GroundedKey = Animator.StringToHash("Grounded");

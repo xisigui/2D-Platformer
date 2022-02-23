@@ -4,8 +4,9 @@ using UnityEngine;
 using System.Linq;
 
 public class PlayerController : MonoBehaviour, IPlayerController
-{
+{    
     // Public for external hooks
+    public GameObject bomb;
     public Vector3 Velocity { get; private set; }
     public FrameInput Input { get; private set; }
     public bool JumpingThisFrame { get; private set; }
@@ -38,6 +39,10 @@ public class PlayerController : MonoBehaviour, IPlayerController
         MoveCharacter(); // Actually perform the axis movement
     }
 
+    private void spawnBomb()
+    {
+        Instantiate(bomb, transform.position, transform.rotation);
+    }
 
     #region Gather Input
 
@@ -45,10 +50,14 @@ public class PlayerController : MonoBehaviour, IPlayerController
         Input = new FrameInput {
             JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
             JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
-            X = UnityEngine.Input.GetAxisRaw("Horizontal")
+            X = UnityEngine.Input.GetAxisRaw("Horizontal"),
+            Fire = UnityEngine.Input.GetButtonDown("Fire1")
         };
             if (Input.JumpDown) {
                 _lastJumpPressed = Time.time;
+            }
+            if(Input.Fire){
+                spawnBomb();
             }
         }
 
